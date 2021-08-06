@@ -14,7 +14,7 @@ android {
         viewBinding true
     }
     defaultConfig {
-        applicationId "com.example.productlist"
+        applicationId "com.example.beerlist"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1

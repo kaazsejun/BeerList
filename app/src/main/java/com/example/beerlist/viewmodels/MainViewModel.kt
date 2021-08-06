@@ -13,7 +13,6 @@ class MainViewModel constructor(private val repository: MainRepository)  : ViewM
 
     val beerList = MutableLiveData<List<Beer>>()
     val errorMessage = MutableLiveData<String>()
-
     fun getAllBeers() {
         val response = repository.getBeers()
         response?.enqueue(object : Callback<List<Beer>> {

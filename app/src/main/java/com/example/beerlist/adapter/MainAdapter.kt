@@ -1,14 +1,19 @@
-package com.example.productlist
+package com.example.beerlist.adapter
 
+import android.content.Intent
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.children
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.beerlist.R
 import com.example.beerlist.models.Beer
 import com.example.beerlist.databinding.ProductslayoutBinding
+import com.example.beerlist.views.DetailsActivity
 
 
-class mainAdapter(): RecyclerView.Adapter<CustomViewHolder>() {
+class MainAdapter(): RecyclerView.Adapter<CustomViewHolder>() {
 
     var beers = mutableListOf<Beer>()
     override fun getItemCount(): Int {
@@ -27,21 +32,21 @@ class mainAdapter(): RecyclerView.Adapter<CustomViewHolder>() {
 
     override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         val beer = beers[position]
-        holder.view.nameView?.text = beer.name
-        holder.view.tagline.text = beer.tagline
-        Glide.with(holder.view.imageView.context).load(beer.image_url).into(holder.view.imageView);
         holder.beer = beer
+        holder.bind.nameView?.text = beer.name
+        holder.bind.tagline.text = beer.tagline
+        Glide.with(holder.bind.imageView.context).load(beer.image_url).into(holder.bind.imageView);
     }
 }
-class CustomViewHolder(val view: ProductslayoutBinding, var beer: Beer? = null): RecyclerView.ViewHolder(view.root){
-    /*init {
-        view.root.setOnClickListener{
-        val intent= Intent(view.root.context, DetailsActivity::class.java)
-         intent.putExtra("name",beer?.name)
+class CustomViewHolder(val bind: ProductslayoutBinding, var beer: Beer? = null): RecyclerView.ViewHolder(bind.root){
+    init {
+        bind.root.setOnClickListener{
+            val intent= Intent(bind.root.context, DetailsActivity::class.java)
+            intent.putExtra("name",beer?.name)
             intent.putExtra("image_url",beer?.image_url)
-         intent.putExtra("description",beer?.description)
-         intent.putExtra("brew_tips",beer?.brewers_tips)
-         view.root.context.startActivity(intent)
-      }
-    }*/
+            intent.putExtra("description",beer?.description)
+            intent.putExtra("brew_tips",beer?.brewers_tips)
+            bind.root.context.startActivity(intent)
+        }
+    }
 }
